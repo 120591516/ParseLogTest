@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wx.mapper.BaseUrlMapper" >
+  <resultMap id="BaseResultMap" type="com.wx.pojo.BaseUrl" >
+    <id column="url_id" property="urlId" jdbcType="INTEGER" />
+    <result column="url_desc" property="urlDesc" jdbcType="VARCHAR" />
+    <result column="url_name" property="urlName" jdbcType="VARCHAR" />
+    <result column="url_type_id" property="urlTypeId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    url_id, url_desc, url_name, url_type_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wx.pojo.BaseUrlExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from base_url
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_url
+    where url_id = #{urlId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from base_url
+    where url_id = #{urlId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wx.pojo.BaseUrlExample" >
+    delete from base_url
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wx.pojo.BaseUrl" >
+    insert into base_url (url_id, url_desc, url_name, 
+      url_type_id)
+    values (#{urlId,jdbcType=INTEGER}, #{urlDesc,jdbcType=VARCHAR}, #{urlName,jdbcType=VARCHAR}, 
+      #{urlTypeId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wx.pojo.BaseUrl" >
+    insert into base_url
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="urlId != null" >
+        url_id,
+      </if>
+      <if test="urlDesc != null" >
+        url_desc,
+      </if>
+      <if test="urlName != null" >
+        url_name,
+      </if>
+      <if test="urlTypeId != null" >
+        url_type_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="urlId != null" >
+        #{urlId,jdbcType=INTEGER},
+      </if>
+      <if test="urlDesc != null" >
+        #{urlDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="urlName != null" >
+        #{urlName,jdbcType=VARCHAR},
+      </if>
+      <if test="urlTypeId != null" >
+        #{urlTypeId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wx.pojo.BaseUrlExample" resultType="java.lang.Integer" >
+    select count(*) from base_url
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update base_url
+    <set >
+      <if test="record.urlId != null" >
+        url_id = #{record.urlId,jdbcType=INTEGER},
+      </if>
+      <if test="record.urlDesc != null" >
+        url_desc = #{record.urlDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.urlName != null" >
+        url_name = #{record.urlName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.urlTypeId != null" >
+        url_type_id = #{record.urlTypeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update base_url
+    set url_id = #{record.urlId,jdbcType=INTEGER},
+      url_desc = #{record.urlDesc,jdbcType=VARCHAR},
+      url_name = #{record.urlName,jdbcType=VARCHAR},
+      url_type_id = #{record.urlTypeId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wx.pojo.BaseUrl" >
+    update base_url
+    <set >
+      <if test="urlDesc != null" >
+        url_desc = #{urlDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="urlName != null" >
+        url_name = #{urlName,jdbcType=VARCHAR},
+      </if>
+      <if test="urlTypeId != null" >
+        url_type_id = #{urlTypeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where url_id = #{urlId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wx.pojo.BaseUrl" >
+    update base_url
+    set url_desc = #{urlDesc,jdbcType=VARCHAR},
+      url_name = #{urlName,jdbcType=VARCHAR},
+      url_type_id = #{urlTypeId,jdbcType=INTEGER}
+    where url_id = #{urlId,jdbcType=INTEGER}
+  </update>
+</mapper>
