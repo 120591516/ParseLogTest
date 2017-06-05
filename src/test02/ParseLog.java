@@ -15,7 +15,8 @@ import com.wx.pojo.WebchatLog;
 import test01.NginxDateTest;
 import util.AddressUtils;
 public class ParseLog {
-	private static String VIEWSTRING = "/ComeIn?m=setOneProductNew&";
+	private static String wxUrlPrefix = "/ComeIn?m=setOneProductNew&";//微信服务号平台
+	private static String wxNurse114UrlPrefix = "/wxNurse114/ComeIn?m=setOneProductNew&";//微信114生活助手
 //	private static String APPLYSTRING = "写过的新闻";
 //	private static String SEARCHSTRING = "正在搜索新闻：";
 //	private static String USERTAG = "用户：";
@@ -36,13 +37,13 @@ public class ParseLog {
 			WebchatLog lp =null;
 			// 一次读入一行，直到读入null为文件结束
 			while ((tempString = reader.readLine()) != null) {
-				if (tempString.contains(VIEWSTRING)) {
+				if (tempString.contains(wxUrlPrefix)) {
 					String city =null;
 					int ipindex = tempString.indexOf("-");
 					String ipaddress = tempString.substring(0, ipindex-1);
 					System.out.println(ipaddress);
-					int urlindex = tempString.indexOf(VIEWSTRING);
-					String urladdress = tempString.substring(urlindex,urlindex+VIEWSTRING.length()+5);
+					int urlindex = tempString.indexOf(wxUrlPrefix);
+					String urladdress = tempString.substring(urlindex,urlindex+wxUrlPrefix.length()+5);
 					System.out.println(urladdress);
 					int dateStartIndex =tempString.indexOf("[");
 					int dateEndIndex =tempString.indexOf("]");
