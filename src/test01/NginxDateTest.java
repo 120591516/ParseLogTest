@@ -19,7 +19,7 @@ public class NginxDateTest {
 	public static Date parseNginxDate(String timeLocal){
 //		timeLocal = timeLocal.replace("[", "");
 //		timeLocal = timeLocal.replace("]", "");
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy:hh:mm:ss Z", Locale.ENGLISH);
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy:hh:mm: Z", Locale.ENGLISH);
 		Date date =null;
 		try {
 			date = formatter.parse(timeLocal);

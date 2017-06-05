@@ -1,95 +1,116 @@
 package com.wx.pojo;
 
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Accesslog {
-    private Integer id;
+public class Accesslog implements Serializable {
+	private static SimpleDateFormat dayFormat = new SimpleDateFormat("yyyyMMdd");
+	private static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+	private Integer id;
 
-    private String ip;
+	private String ip;
 
-    private Integer productId;
+	private Integer productId;
 
-    private Integer uv;
+	private String productName;
 
-    private Integer pv;
+	private Integer uv;
 
-    private Date accesstime;
+	private Integer pv;
 
-    private Date starttime;
+	private Date accesstime;
 
-    private Date endtime;
+	private Date starttime;
 
-    private Integer platformId;
+	private Date endtime;
 
-    public Integer getId() {
-        return id;
-    }
+	private Integer platformId;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public String getIp() {
-        return ip;
-    }
+	public String getProductName() {
+		return productName;
+	}
 
-    public void setIp(String ip) {
-        this.ip = ip == null ? null : ip.trim();
-    }
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 
-    public Integer getProductId() {
-        return productId;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
+	public String getIp() {
+		return ip;
+	}
 
-    public Integer getUv() {
-        return uv;
-    }
+	public void setIp(String ip) {
+		this.ip = ip == null ? null : ip.trim();
+	}
 
-    public void setUv(Integer uv) {
-        this.uv = uv;
-    }
+	public Integer getProductId() {
+		return productId;
+	}
 
-    public Integer getPv() {
-        return pv;
-    }
+	public void setProductId(Integer productId) {
+		this.productId = productId;
+	}
 
-    public void setPv(Integer pv) {
-        this.pv = pv;
-    }
+	public Integer getUv() {
+		return uv;
+	}
 
-    public Date getAccesstime() {
-        return accesstime;
-    }
+	public void setUv(Integer uv) {
+		this.uv = uv;
+	}
 
-    public void setAccesstime(Date accesstime) {
-        this.accesstime = accesstime;
-    }
+	public Integer getPv() {
+		return pv;
+	}
 
-    public Date getStarttime() {
-        return starttime;
-    }
+	public void setPv(Integer pv) {
+		this.pv = pv;
+	}
 
-    public void setStarttime(Date starttime) {
-        this.starttime = starttime;
-    }
+	public Date getAccesstime() {
+		return accesstime;
+	}
 
-    public Date getEndtime() {
-        return endtime;
-    }
+	public void setAccesstime(Date accesstime) {
+		this.accesstime = accesstime;
+	}
 
-    public void setEndtime(Date endtime) {
-        this.endtime = endtime;
-    }
+	public Date getStarttime() {
+		return starttime;
+	}
 
-    public Integer getPlatformId() {
-        return platformId;
-    }
+	public void setStarttime(Date starttime) {
+		this.starttime = starttime;
+	}
 
-    public void setPlatformId(Integer platformId) {
-        this.platformId = platformId;
-    }
+	public Date getEndtime() {
+		return endtime;
+	}
+
+	public void setEndtime(Date endtime) {
+		this.endtime = endtime;
+	}
+
+	public Integer getPlatformId() {
+		return platformId;
+	}
+
+	public void setPlatformId(Integer platformId) {
+		this.platformId = platformId;
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.productName + "\t" + this.ip + "\t" + dayFormat.format(this.accesstime) + "\t"
+				+ timeFormat.format(this.starttime) + "\t" + timeFormat.format(this.endtime);
+	}
 }
