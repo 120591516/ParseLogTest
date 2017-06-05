@@ -3,14 +3,14 @@ package com.wx.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseUrlExample {
+public class ProductExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public BaseUrlExample() {
+    public ProductExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -104,263 +104,263 @@ public class BaseUrlExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andUrlIdIsNull() {
-            addCriterion("url_id is null");
+        public Criteria andIdIsNull() {
+            addCriterion("id is null");
             return (Criteria) this;
         }
 
-        public Criteria andUrlIdIsNotNull() {
-            addCriterion("url_id is not null");
+        public Criteria andIdIsNotNull() {
+            addCriterion("id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUrlIdEqualTo(Integer value) {
-            addCriterion("url_id =", value, "urlId");
+        public Criteria andIdEqualTo(Integer value) {
+            addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUrlIdNotEqualTo(Integer value) {
-            addCriterion("url_id <>", value, "urlId");
+        public Criteria andIdNotEqualTo(Integer value) {
+            addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUrlIdGreaterThan(Integer value) {
-            addCriterion("url_id >", value, "urlId");
+        public Criteria andIdGreaterThan(Integer value) {
+            addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUrlIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("url_id >=", value, "urlId");
+        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUrlIdLessThan(Integer value) {
-            addCriterion("url_id <", value, "urlId");
+        public Criteria andIdLessThan(Integer value) {
+            addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUrlIdLessThanOrEqualTo(Integer value) {
-            addCriterion("url_id <=", value, "urlId");
+        public Criteria andIdLessThanOrEqualTo(Integer value) {
+            addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUrlIdIn(List<Integer> values) {
-            addCriterion("url_id in", values, "urlId");
+        public Criteria andIdIn(List<Integer> values) {
+            addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUrlIdNotIn(List<Integer> values) {
-            addCriterion("url_id not in", values, "urlId");
+        public Criteria andIdNotIn(List<Integer> values) {
+            addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUrlIdBetween(Integer value1, Integer value2) {
-            addCriterion("url_id between", value1, value2, "urlId");
+        public Criteria andIdBetween(Integer value1, Integer value2) {
+            addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUrlIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("url_id not between", value1, value2, "urlId");
+        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("id not between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUrlDescIsNull() {
-            addCriterion("url_desc is null");
+        public Criteria andPathIsNull() {
+            addCriterion("path is null");
             return (Criteria) this;
         }
 
-        public Criteria andUrlDescIsNotNull() {
-            addCriterion("url_desc is not null");
+        public Criteria andPathIsNotNull() {
+            addCriterion("path is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUrlDescEqualTo(String value) {
-            addCriterion("url_desc =", value, "urlDesc");
+        public Criteria andPathEqualTo(String value) {
+            addCriterion("path =", value, "path");
             return (Criteria) this;
         }
 
-        public Criteria andUrlDescNotEqualTo(String value) {
-            addCriterion("url_desc <>", value, "urlDesc");
+        public Criteria andPathNotEqualTo(String value) {
+            addCriterion("path <>", value, "path");
             return (Criteria) this;
         }
 
-        public Criteria andUrlDescGreaterThan(String value) {
-            addCriterion("url_desc >", value, "urlDesc");
+        public Criteria andPathGreaterThan(String value) {
+            addCriterion("path >", value, "path");
             return (Criteria) this;
         }
 
-        public Criteria andUrlDescGreaterThanOrEqualTo(String value) {
-            addCriterion("url_desc >=", value, "urlDesc");
+        public Criteria andPathGreaterThanOrEqualTo(String value) {
+            addCriterion("path >=", value, "path");
             return (Criteria) this;
         }
 
-        public Criteria andUrlDescLessThan(String value) {
-            addCriterion("url_desc <", value, "urlDesc");
+        public Criteria andPathLessThan(String value) {
+            addCriterion("path <", value, "path");
             return (Criteria) this;
         }
 
-        public Criteria andUrlDescLessThanOrEqualTo(String value) {
-            addCriterion("url_desc <=", value, "urlDesc");
+        public Criteria andPathLessThanOrEqualTo(String value) {
+            addCriterion("path <=", value, "path");
             return (Criteria) this;
         }
 
-        public Criteria andUrlDescLike(String value) {
-            addCriterion("url_desc like", value, "urlDesc");
+        public Criteria andPathLike(String value) {
+            addCriterion("path like", value, "path");
             return (Criteria) this;
         }
 
-        public Criteria andUrlDescNotLike(String value) {
-            addCriterion("url_desc not like", value, "urlDesc");
+        public Criteria andPathNotLike(String value) {
+            addCriterion("path not like", value, "path");
             return (Criteria) this;
         }
 
-        public Criteria andUrlDescIn(List<String> values) {
-            addCriterion("url_desc in", values, "urlDesc");
+        public Criteria andPathIn(List<String> values) {
+            addCriterion("path in", values, "path");
             return (Criteria) this;
         }
 
-        public Criteria andUrlDescNotIn(List<String> values) {
-            addCriterion("url_desc not in", values, "urlDesc");
+        public Criteria andPathNotIn(List<String> values) {
+            addCriterion("path not in", values, "path");
             return (Criteria) this;
         }
 
-        public Criteria andUrlDescBetween(String value1, String value2) {
-            addCriterion("url_desc between", value1, value2, "urlDesc");
+        public Criteria andPathBetween(String value1, String value2) {
+            addCriterion("path between", value1, value2, "path");
             return (Criteria) this;
         }
 
-        public Criteria andUrlDescNotBetween(String value1, String value2) {
-            addCriterion("url_desc not between", value1, value2, "urlDesc");
+        public Criteria andPathNotBetween(String value1, String value2) {
+            addCriterion("path not between", value1, value2, "path");
             return (Criteria) this;
         }
 
-        public Criteria andUrlNameIsNull() {
-            addCriterion("url_name is null");
+        public Criteria andNameIsNull() {
+            addCriterion("name is null");
             return (Criteria) this;
         }
 
-        public Criteria andUrlNameIsNotNull() {
-            addCriterion("url_name is not null");
+        public Criteria andNameIsNotNull() {
+            addCriterion("name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUrlNameEqualTo(String value) {
-            addCriterion("url_name =", value, "urlName");
+        public Criteria andNameEqualTo(String value) {
+            addCriterion("name =", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andUrlNameNotEqualTo(String value) {
-            addCriterion("url_name <>", value, "urlName");
+        public Criteria andNameNotEqualTo(String value) {
+            addCriterion("name <>", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andUrlNameGreaterThan(String value) {
-            addCriterion("url_name >", value, "urlName");
+        public Criteria andNameGreaterThan(String value) {
+            addCriterion("name >", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andUrlNameGreaterThanOrEqualTo(String value) {
-            addCriterion("url_name >=", value, "urlName");
+        public Criteria andNameGreaterThanOrEqualTo(String value) {
+            addCriterion("name >=", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andUrlNameLessThan(String value) {
-            addCriterion("url_name <", value, "urlName");
+        public Criteria andNameLessThan(String value) {
+            addCriterion("name <", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andUrlNameLessThanOrEqualTo(String value) {
-            addCriterion("url_name <=", value, "urlName");
+        public Criteria andNameLessThanOrEqualTo(String value) {
+            addCriterion("name <=", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andUrlNameLike(String value) {
-            addCriterion("url_name like", value, "urlName");
+        public Criteria andNameLike(String value) {
+            addCriterion("name like", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andUrlNameNotLike(String value) {
-            addCriterion("url_name not like", value, "urlName");
+        public Criteria andNameNotLike(String value) {
+            addCriterion("name not like", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andUrlNameIn(List<String> values) {
-            addCriterion("url_name in", values, "urlName");
+        public Criteria andNameIn(List<String> values) {
+            addCriterion("name in", values, "name");
             return (Criteria) this;
         }
 
-        public Criteria andUrlNameNotIn(List<String> values) {
-            addCriterion("url_name not in", values, "urlName");
+        public Criteria andNameNotIn(List<String> values) {
+            addCriterion("name not in", values, "name");
             return (Criteria) this;
         }
 
-        public Criteria andUrlNameBetween(String value1, String value2) {
-            addCriterion("url_name between", value1, value2, "urlName");
+        public Criteria andNameBetween(String value1, String value2) {
+            addCriterion("name between", value1, value2, "name");
             return (Criteria) this;
         }
 
-        public Criteria andUrlNameNotBetween(String value1, String value2) {
-            addCriterion("url_name not between", value1, value2, "urlName");
+        public Criteria andNameNotBetween(String value1, String value2) {
+            addCriterion("name not between", value1, value2, "name");
             return (Criteria) this;
         }
 
-        public Criteria andUrlTypeIdIsNull() {
-            addCriterion("url_type_id is null");
+        public Criteria andProductTypeIsNull() {
+            addCriterion("product_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andUrlTypeIdIsNotNull() {
-            addCriterion("url_type_id is not null");
+        public Criteria andProductTypeIsNotNull() {
+            addCriterion("product_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUrlTypeIdEqualTo(Integer value) {
-            addCriterion("url_type_id =", value, "urlTypeId");
+        public Criteria andProductTypeEqualTo(Integer value) {
+            addCriterion("product_type =", value, "productType");
             return (Criteria) this;
         }
 
-        public Criteria andUrlTypeIdNotEqualTo(Integer value) {
-            addCriterion("url_type_id <>", value, "urlTypeId");
+        public Criteria andProductTypeNotEqualTo(Integer value) {
+            addCriterion("product_type <>", value, "productType");
             return (Criteria) this;
         }
 
-        public Criteria andUrlTypeIdGreaterThan(Integer value) {
-            addCriterion("url_type_id >", value, "urlTypeId");
+        public Criteria andProductTypeGreaterThan(Integer value) {
+            addCriterion("product_type >", value, "productType");
             return (Criteria) this;
         }
 
-        public Criteria andUrlTypeIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("url_type_id >=", value, "urlTypeId");
+        public Criteria andProductTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("product_type >=", value, "productType");
             return (Criteria) this;
         }
 
-        public Criteria andUrlTypeIdLessThan(Integer value) {
-            addCriterion("url_type_id <", value, "urlTypeId");
+        public Criteria andProductTypeLessThan(Integer value) {
+            addCriterion("product_type <", value, "productType");
             return (Criteria) this;
         }
 
-        public Criteria andUrlTypeIdLessThanOrEqualTo(Integer value) {
-            addCriterion("url_type_id <=", value, "urlTypeId");
+        public Criteria andProductTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("product_type <=", value, "productType");
             return (Criteria) this;
         }
 
-        public Criteria andUrlTypeIdIn(List<Integer> values) {
-            addCriterion("url_type_id in", values, "urlTypeId");
+        public Criteria andProductTypeIn(List<Integer> values) {
+            addCriterion("product_type in", values, "productType");
             return (Criteria) this;
         }
 
-        public Criteria andUrlTypeIdNotIn(List<Integer> values) {
-            addCriterion("url_type_id not in", values, "urlTypeId");
+        public Criteria andProductTypeNotIn(List<Integer> values) {
+            addCriterion("product_type not in", values, "productType");
             return (Criteria) this;
         }
 
-        public Criteria andUrlTypeIdBetween(Integer value1, Integer value2) {
-            addCriterion("url_type_id between", value1, value2, "urlTypeId");
+        public Criteria andProductTypeBetween(Integer value1, Integer value2) {
+            addCriterion("product_type between", value1, value2, "productType");
             return (Criteria) this;
         }
 
-        public Criteria andUrlTypeIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("url_type_id not between", value1, value2, "urlTypeId");
+        public Criteria andProductTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("product_type not between", value1, value2, "productType");
             return (Criteria) this;
         }
     }

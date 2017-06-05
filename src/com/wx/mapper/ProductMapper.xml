@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wx.mapper.BaseUrlMapper" >
-  <resultMap id="BaseResultMap" type="com.wx.pojo.BaseUrl" >
-    <id column="url_id" property="urlId" jdbcType="INTEGER" />
-    <result column="url_desc" property="urlDesc" jdbcType="VARCHAR" />
-    <result column="url_name" property="urlName" jdbcType="VARCHAR" />
-    <result column="url_type_id" property="urlTypeId" jdbcType="INTEGER" />
+<mapper namespace="com.wx.mapper.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.wx.pojo.Product" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="product_type" property="productType" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -66,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    url_id, url_desc, url_name, url_type_id
+    id, path, name, product_type
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wx.pojo.BaseUrlExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wx.pojo.ProductExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from base_url
+    from product
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,76 +85,76 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from base_url
-    where url_id = #{urlId,jdbcType=INTEGER}
+    from product
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from base_url
-    where url_id = #{urlId,jdbcType=INTEGER}
+    delete from product
+    where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.wx.pojo.BaseUrlExample" >
-    delete from base_url
+  <delete id="deleteByExample" parameterType="com.wx.pojo.ProductExample" >
+    delete from product
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.wx.pojo.BaseUrl" >
-    insert into base_url (url_id, url_desc, url_name, 
-      url_type_id)
-    values (#{urlId,jdbcType=INTEGER}, #{urlDesc,jdbcType=VARCHAR}, #{urlName,jdbcType=VARCHAR}, 
-      #{urlTypeId,jdbcType=INTEGER})
+  <insert id="insert" parameterType="com.wx.pojo.Product" >
+    insert into product (id, path, name, 
+      product_type)
+    values (#{id,jdbcType=INTEGER}, #{path,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{productType,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.wx.pojo.BaseUrl" >
-    insert into base_url
+  <insert id="insertSelective" parameterType="com.wx.pojo.Product" >
+    insert into product
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="urlId != null" >
-        url_id,
+      <if test="id != null" >
+        id,
       </if>
-      <if test="urlDesc != null" >
-        url_desc,
+      <if test="path != null" >
+        path,
       </if>
-      <if test="urlName != null" >
-        url_name,
+      <if test="name != null" >
+        name,
       </if>
-      <if test="urlTypeId != null" >
-        url_type_id,
+      <if test="productType != null" >
+        product_type,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="urlId != null" >
-        #{urlId,jdbcType=INTEGER},
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
       </if>
-      <if test="urlDesc != null" >
-        #{urlDesc,jdbcType=VARCHAR},
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
       </if>
-      <if test="urlName != null" >
-        #{urlName,jdbcType=VARCHAR},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="urlTypeId != null" >
-        #{urlTypeId,jdbcType=INTEGER},
+      <if test="productType != null" >
+        #{productType,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.wx.pojo.BaseUrlExample" resultType="java.lang.Integer" >
-    select count(*) from base_url
+  <select id="countByExample" parameterType="com.wx.pojo.ProductExample" resultType="java.lang.Integer" >
+    select count(*) from product
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update base_url
+    update product
     <set >
-      <if test="record.urlId != null" >
-        url_id = #{record.urlId,jdbcType=INTEGER},
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.urlDesc != null" >
-        url_desc = #{record.urlDesc,jdbcType=VARCHAR},
+      <if test="record.path != null" >
+        path = #{record.path,jdbcType=VARCHAR},
       </if>
-      <if test="record.urlName != null" >
-        url_name = #{record.urlName,jdbcType=VARCHAR},
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.urlTypeId != null" >
-        url_type_id = #{record.urlTypeId,jdbcType=INTEGER},
+      <if test="record.productType != null" >
+        product_type = #{record.productType,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -162,35 +162,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update base_url
-    set url_id = #{record.urlId,jdbcType=INTEGER},
-      url_desc = #{record.urlDesc,jdbcType=VARCHAR},
-      url_name = #{record.urlName,jdbcType=VARCHAR},
-      url_type_id = #{record.urlTypeId,jdbcType=INTEGER}
+    update product
+    set id = #{record.id,jdbcType=INTEGER},
+      path = #{record.path,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      product_type = #{record.productType,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wx.pojo.BaseUrl" >
-    update base_url
+  <update id="updateByPrimaryKeySelective" parameterType="com.wx.pojo.Product" >
+    update product
     <set >
-      <if test="urlDesc != null" >
-        url_desc = #{urlDesc,jdbcType=VARCHAR},
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
       </if>
-      <if test="urlName != null" >
-        url_name = #{urlName,jdbcType=VARCHAR},
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="urlTypeId != null" >
-        url_type_id = #{urlTypeId,jdbcType=INTEGER},
+      <if test="productType != null" >
+        product_type = #{productType,jdbcType=INTEGER},
       </if>
     </set>
-    where url_id = #{urlId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.wx.pojo.BaseUrl" >
-    update base_url
-    set url_desc = #{urlDesc,jdbcType=VARCHAR},
-      url_name = #{urlName,jdbcType=VARCHAR},
-      url_type_id = #{urlTypeId,jdbcType=INTEGER}
-    where url_id = #{urlId,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.wx.pojo.Product" >
+    update product
+    set path = #{path,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      product_type = #{productType,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

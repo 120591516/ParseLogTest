@@ -5,15 +5,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
-
-import com.wx.pojo.WebchatLog;
-
-import test01.NginxDateTest;
-import util.AddressUtils;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 public class ParseLog {
 	private static String wxUrlPrefix = "/ComeIn?m=setOneProductNew&";//微信服务号平台
 	private static String wxNurse114UrlPrefix = "/wxNurse114/ComeIn?m=setOneProductNew&";//微信114生活助手
@@ -24,6 +17,10 @@ public class ParseLog {
 	 * 用戶名，用戶行為，以key-value方式存储 用户行为 以json方式存储
 	 * @throws Exception 
 	 */
+	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+	static String  logFileName = "access_";
+	static String today = sdf.format(new Date());
+	
 	public static void readFileByLines(String fileName) throws Exception {
 		File file = new File(fileName);
 		BufferedReader reader = null;
@@ -33,12 +30,11 @@ public class ParseLog {
 			InputStreamReader isr = new InputStreamReader(new FileInputStream(file), "UTF-8");
 			reader = new BufferedReader(isr);
 			String tempString = null;
-			List<WebchatLog> list = new ArrayList<>();
-			WebchatLog lp =null;
+//			List<WebchatLog> list = new ArrayList<>();
+//			WebchatLog lp =null;
 			// 一次读入一行，直到读入null为文件结束
 			while ((tempString = reader.readLine()) != null) {
 				if (tempString.contains(wxUrlPrefix)) {
-					String city =null;
 					int ipindex = tempString.indexOf("-");
 					String ipaddress = tempString.substring(0, ipindex-1);
 					System.out.println(ipaddress);
@@ -49,22 +45,17 @@ public class ParseLog {
 					int dateEndIndex =tempString.indexOf("]");
 					String dateStr = tempString.substring(dateStartIndex+1, dateEndIndex);
 					System.out.println(dateStr);
-					/*if (StringUtils.isNotEmpty(ipaddress)) {
-						AddressUtils addressUtils = new AddressUtils();
-						 city = addressUtils.getAddress("ip="+ipaddress, "utf-8");
-						System.out.println(city);
-					}*/
-					lp = new WebchatLog();
-					lp.setLogIp(ipaddress);
-					lp.setLogTime(NginxDateTest.parseNginxDate(dateStr));
-					lp.setLogUrl(urladdress);
-					list.add(lp);
+//					lp = new WebchatLog();
+//					lp.setLogIp(ipaddress);
+//					lp.setLogTime(NginxDateTest.parseNginxDate(dateStr));
+//					lp.setLogUrl(urladdress);
+//					list.add(lp);
 				}
 			}
 			reader.close();
-			for (WebchatLog logPojo : list) {
-				System.out.println(logPojo.toString());
-			}
+//			for (WebchatLog logPojo : list) {
+//				System.out.println(logPojo.toString());
+//			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -80,5 +71,7 @@ public class ParseLog {
 	public static void main(String[] args) throws Exception {
 		System.out.println(System.getProperty("user.dir"));
 		ParseLog.readFileByLines(System.getProperty("user.dir") + "\\src\\access_20170601.log");
+		System.out.println(today);
+		System.out.println(logFileName+today+".log");
 	}
 }
