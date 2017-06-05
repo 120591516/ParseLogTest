@@ -17,7 +17,6 @@ public class AccesslogSpread extends Accesslog {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return this.productPath + "\t" + this.getIp() + "\t" + dayFormat.format(this.getAccesstime()) + "\t"
 				+ timeFormat.format(this.getStarttime()) + "\t" + timeFormat.format(this.getEndtime());
 	}
