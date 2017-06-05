@@ -16,6 +16,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
 
 import com.wx.pojo.Accesslog;
+import com.wx.pojo.AccesslogSpread;
 
 import util.MyPredicate;
 
@@ -44,14 +45,13 @@ public class ParseLog {
 	public static void readFileByLines(String fileName) throws Exception {
 		File file = new File(fileName);
 		BufferedReader reader = null;
-
 		try {
 			System.out.println("以行为单位读取文件内容，一次读一整行：");
 			InputStreamReader isr = new InputStreamReader(new FileInputStream(file), "UTF-8");
 			reader = new BufferedReader(isr);
 			String tempString = null;
-			List<Accesslog> list = new ArrayList<Accesslog>();
-			Accesslog accesslog = null;
+			List<AccesslogSpread> list = new ArrayList<AccesslogSpread>();
+			AccesslogSpread accesslog = null;
 			String dayTime = fileName.substring(fileName.length() - 12, fileName.length() - 4);
 			System.out.println("当前时间：" + dayTime);
 			System.out.println(dayFormat.parse(dayTime));
@@ -60,7 +60,7 @@ public class ParseLog {
 				// 获取访问时间的小时数
 				// 获取当前访问时间的时分秒
 				if (tempString.contains(wxUrlPrefix)) {
-					accesslog = new Accesslog();
+					accesslog = new AccesslogSpread();
 					int timeIndex = tempString.indexOf(":");
 					String hourse = tempString.substring(timeIndex + 1, timeIndex + 3);
 					System.out.println("开始的小时" + hourse);
@@ -87,7 +87,7 @@ public class ParseLog {
 					accesslog.setIp(ipaddress);
 					accesslog.setStarttime(timeFormat.parse(startTime));
 					accesslog.setEndtime(timeFormat.parse(endTime));
-					accesslog.setProductName(urladdress);
+					accesslog.setProductPath(urladdress);
 					list.add(accesslog);
 				}
 			}
@@ -96,8 +96,58 @@ public class ParseLog {
 
 				System.out.println(accesslog2);
 			}
-			Predicate predicate = new MyPredicate("ip", "223.85.220.208");
-			List<Accesslog> select = (List<Accesslog>) CollectionUtils.select(list, predicate);
+			List<AccesslogSpread> allProduct = new ArrayList<>(list);
+			// 获取所有访问商品列表
+			for (int i = 0; i < allProduct.size(); i++) {
+				for (int j = allProduct.size() - 1; j > i; j--) {
+					if (allProduct.get(i).getProductPath().equals(allProduct.get(j).getProductPath())) {
+						allProduct.remove(j);
+					}
+				}
+			}
+			for (AccesslogSpread accesslog2 : allProduct) {
+				// 根据商品的地址获取商品一天内的访问次数
+				System.out.println("访问地址是" + accesslog2.getProductPath());
+				Predicate predicate = new MyPredicate("productPath", accesslog2.getProductPath());
+				List<Accesslog> select = (List<Accesslog>) CollectionUtils.select(list, predicate);
+				// 获取某一商品的各个时间段
+				List<Accesslog> timeList = new ArrayList<>(select);
+				for (int i = 0; i < timeList.size(); i++) {
+					for (int j = timeList.size() - 1; j > i; j--) {
+						if (timeList.get(i).getStarttime().equals(timeList.get(j).getStarttime())) {
+							timeList.remove(j);
+						}
+					}
+				}
+				for (Accesslog accesslog3 : timeList) {
+					Predicate pvPredicate = new MyPredicate("starttime", accesslog3.getStarttime());
+					List<Accesslog> pv = (List<Accesslog>) CollectionUtils.select(select, pvPredicate);
+					System.out.println("时间段" + timeFormat.format(accesslog3.getStarttime()) + "--"
+							+ timeFormat.format(accesslog3.getEndtime()) + "的pv次数" + pv.size());
+					if (pv.size() > 1) {
+						for (int i = 0; i < pv.size() - 1; i++) {
+							for (int j = 1; j < pv.size(); j++) {
+								if (pv.get(i).getIp().equals(pv.get(j).getIp())) {
+									pv.remove(j);
+								}
+							}
+						}
+					}
+					System.out.println("时间段" + timeFormat.format(accesslog3.getStarttime()) + "--"
+							+ timeFormat.format(accesslog3.getEndtime()) + "的uv次数" + pv.size());
+
+				}
+
+				System.out.println(accesslog2.getProductPath() + "------pv" + select.size());
+				for (int i = 0; i < select.size(); i++) {
+					for (int j = select.size() - 1; j > i; j--) {
+						if (select.get(i).getIp().equals(select.get(j).getIp())) {
+							select.remove(j);
+						}
+					}
+				}
+				System.out.println(accesslog2.getProductPath() + "------uv" + select.size());
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -118,7 +168,9 @@ public class ParseLog {
 		String yesterday = dayFormat.format(time);
 		System.out.println(System.getProperty("user.dir"));
 		System.out.println("\\src\\access_" + yesterday + ".log");
-		ParseLog.readFileByLines(System.getProperty("user.dir") + "\\src\\access_" + yesterday + ".log");
+		// ParseLog.readFileByLines(System.getProperty("user.dir") +
+		// "\\src\\access_" + yesterday + ".log");
+		ParseLog.readFileByLines(System.getProperty("user.dir") + "\\src\\access_20170601.log");
 	}
 
 	/**

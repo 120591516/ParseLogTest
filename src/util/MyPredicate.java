@@ -1,6 +1,7 @@
 package util;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.collections.Predicate;
@@ -56,6 +57,11 @@ public class MyPredicate implements Predicate {
 		}
 		if (beanValue.getClass().equals(Double.class)) {
 			if (((Double) beanValue).equals(value)) {
+				return true;
+			}
+		}
+		if (beanValue.getClass().equals(Date.class)) {
+			if (((Date) beanValue).equals(value)) {
 				return true;
 			}
 		} else {

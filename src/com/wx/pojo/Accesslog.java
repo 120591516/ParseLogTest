@@ -5,15 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Accesslog implements Serializable {
-	private static SimpleDateFormat dayFormat = new SimpleDateFormat("yyyyMMdd");
+	private static SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
 	private static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 	private Integer id;
 
 	private String ip;
 
 	private Integer productId;
-
-	private String productName;
 
 	private Integer uv;
 
@@ -29,14 +27,6 @@ public class Accesslog implements Serializable {
 
 	public Integer getId() {
 		return id;
-	}
-
-	public String getProductName() {
-		return productName;
-	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
 	}
 
 	public void setId(Integer id) {
@@ -107,10 +97,4 @@ public class Accesslog implements Serializable {
 		this.platformId = platformId;
 	}
 
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return this.productName + "\t" + this.ip + "\t" + dayFormat.format(this.accesstime) + "\t"
-				+ timeFormat.format(this.starttime) + "\t" + timeFormat.format(this.endtime);
-	}
 }
